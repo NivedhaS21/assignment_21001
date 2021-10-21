@@ -1,3 +1,6 @@
+Nivedha S
+id: 21001
+
 1 .	select ename 
 	from emp
 	where job='clerk';
