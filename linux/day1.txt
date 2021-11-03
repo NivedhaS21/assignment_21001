@@ -1,0 +1,213 @@
+Slide 41
+
+1. Create folder 'Test' in your home directory​
+	
+->	mkdir Test
+
+2. Create below files​
+
+  - employeelist​
+
+  - skillset​
+	
+->	cat employeelist
+	cat skillset
+
+​
+3. Create folder Test2 in home directory​
+
+  - create symbolink and hard link for skillset file ​
+
+  - delete skillset file and check if hardlink and symbolic link file exists​
+
+  - explain the difference b/n symbolic and hard links​
+
+->	a. $ ln -s skillset slink
+	   $ ln skillset hlink
+	b.  rm skillset
+		-yes hardlink amd symbolic links exists
+	c. Symbolic links link to a path name.
+	   Hard links are additional pointers to an inode.
+
+
+4. Provide read and write permission to 'user2' group​
+
+   test if user2 group users can access the file​
+
+->	chmod g+rw flist
+
+
+5. Revoke write permission from user2 group and test the access again​
+
+->	chmod g-w flist
+
+6. Grant write permission for others and test it ​
+
+->	chmod o+w flist
+
+7. Revoke write permission for others and test again​
+
+->	chmod o-w flist
+
+8. Change the group of employeelist file to 'user3'​
+
+   test if user3 group have access​
+
+->	 chgrp user3 flist
+
+9. Change ownership of the file to user5 and test​
+
+->	sudo chgrp user5 flist
+
+
+10. check how many employees are there  (hint: use wc command)​
+
+->	wc -l employeelist
+
+************************************************************************************************************************************************************************
+Slide 47
+
+1. Create file “File1”​
+-> 	cat >File1
+
+2. Append 2 more lines to the same file​
+
+->	cat >>File1 (enter)
+	Wishing you a Happy Diwali
+	Let blessings be showered to you.
+	
+
+3. Create File2 with few lines​
+
+->	cat >File2
+
+4. Display the contents of both File1 and File2​
+
+->	cat File1
+	cat File2
+
+5. Concatenate both File1 & 2​
+->	cat File1 File2 >new_file
+
+6. Send the above output to File3​
+->	cp new_file File3
+
+7. Read File1,File2,File3… File5 . Observe the output​
+->	cat File1,File2,File3,File4, File5
+	
+
+8. Redirect the errors of the above command to “errorlog”​
+->	cat File1,File2,File3,File4, File5 2>errorlog
+
+9. Concatenate name File1 to 5 and store it in File 10. if any errors, log them in the same file ​
+->	cat File1,File2,File3,File4, File5 1>errorlog 2>&1
+
+
+10.Copy File1 to File6. Add the errors to “errorlog”​
+->	cp File1 File6 >errorlog
+
+************************************************************************************************************************************************************************
+
+Slide 55
+
+* The 10th to 25th  lines in a file​
+
+->	tail +10 file1 | head -16 
+
+* List only 10th line in a file​
+->	tail +10 file1 | head -1
+
+* List only the recently modified file in the current directory​
+->	ls -lt
+
+* List only the smallest file in the current directory​
+->	ls -lSr | head -2
+
+
+*  A data file is updated regularly, each day with 10 new records. New records are appended at the end. ​
+
+    Write the command to print total number of records in the file.​
+
+    Write the command to list only the records entered 3 days before.  
+-> 	a. wc -l
+	b. ls -l | grep "$(date +"%b %e")"
+
+************************************************************************************************************************************************************************
+
+Slide 61
+
+*Lines containing A​
+->	 grep [*a*] flist
+
+
+*lines containing The at the beginning​
+->	grep 'the' flist
+
+
+*lines  ending with  .	
+->	grep '[.]'$ flist
+​
+
+*lines with a,b or c as the second letter​
+->	grep -ni [?abc*] flist
+
+*lines which contain def , deef or deeeef ​
+->	 grep 'def\|deef\|deeeef' flist
+
+
+*lines not having numbers at the beginning ​
+->	grep [^1-9] flist
+
+
+*empty lines​
+->	grep -c '^$' flist
+
+
+*list the password file details of user1 - user10​
+->	
+
+*list only directories​
+-> ls dir */
+
+*list out the C programs in the current directory which are using math library file (hint:  math library file - math.h)​
+
+
+**********************************************************************************************************************************************************************
+Slide 64
+
+Create a file which contains long listing of the files in root directory​
+->	ls -l
+
+*Sort the file based on the filename descending order (last field)​
+->	sort -dr flist
+
+
+*Sort the file based only on the inode count​
+->	sort -i flist
+
+
+*Sort the file based on the user name and group name in reverse order​
+->	ls -l | sort -k3 -k4 |more
+
+*Sort the file based on the file size and store the output in a file called sortedfile​
+->	 ls -lS | cat >sortedfile
+
+**********************************************************************************************************************************************************************
+
+SLide 67
+
+Convert all capital letters into small letters in file
+->	cat flist | tr a-z A-Z
+​
+
+*Remove all occurrences of numbers in file​
+->	cat flist | tr -d [1-9]
+
+
+*remove all occurrences of spaces in a file​
+
+*suppress multiple occurrence of spaces in long listing of filenames​
+
+*count the number of alphabets in the file​
+
+*count the occurrences of ovals in the given file​
