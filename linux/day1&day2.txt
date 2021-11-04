@@ -1,0 +1,306 @@
+
+Nivedha S
+id :21001
+
+************************************************************************************************************************************************************************
+Slide 41
+
+1. Create folder 'Test' in your home directory​
+	
+->	mkdir Test
+
+2. Create below files​
+
+  - employeelist​
+
+  - skillset​
+	
+->	cat employeelist
+	cat skillset
+
+​
+3. Create folder Test2 in home directory​
+
+  - create symbolink and hard link for skillset file ​
+
+  - delete skillset file and check if hardlink and symbolic link file exists​
+
+  - explain the difference b/n symbolic and hard links​
+
+->	a. $ ln -s skillset slink
+	   $ ln skillset hlink
+	b.  rm skillset
+		-yes hardlink amd symbolic links exists
+	c. Symbolic links link to a path name.
+	   Hard links are additional pointers to an inode.
+
+
+4. Provide read and write permission to 'user2' group​
+
+   test if user2 group users can access the file​
+
+->	chmod g+rw flist
+
+
+5. Revoke write permission from user2 group and test the access again​
+
+->	chmod g-w flist
+
+6. Grant write permission for others and test it ​
+
+->	chmod o+w flist
+
+7. Revoke write permission for others and test again​
+
+->	chmod o-w flist
+
+8. Change the group of employeelist file to 'user3'​
+
+   test if user3 group have access​
+
+->	 chgrp user3 flist
+
+9. Change ownership of the file to user5 and test​
+
+->	sudo chgrp user5 flist
+
+
+10. check how many employees are there  (hint: use wc command)​
+
+->	wc -l employeelist
+
+************************************************************************************************************************************************************************
+Slide 47
+
+1. Create file “File1”​
+-> 	cat >File1
+
+2. Append 2 more lines to the same file​
+
+->	cat >>File1 (enter)
+	Wishing you a Happy Diwali
+	Let blessings be showered to you.
+	
+
+3. Create File2 with few lines​
+
+->	cat >File2
+
+4. Display the contents of both File1 and File2​
+
+->	cat File1
+	cat File2
+
+5. Concatenate both File1 & 2​
+->	cat File1 File2 >new_file
+
+6. Send the above output to File3​
+->	cp new_file File3
+
+7. Read File1,File2,File3… File5 . Observe the output​
+->	cat File1,File2,File3,File4, File5
+	
+
+8. Redirect the errors of the above command to “errorlog”​
+->	cat File1,File2,File3,File4, File5 2>errorlog
+
+9. Concatenate name File1 to 5 and store it in File 10. if any errors, log them in the same file ​
+->	cat File1,File2,File3,File4, File5 1>errorlog 2>&1
+
+
+10.Copy File1 to File6. Add the errors to “errorlog”​
+->	cp File1 File6 >errorlog
+
+************************************************************************************************************************************************************************
+
+Slide 55
+
+* The 10th to 25th  lines in a file​
+
+->	tail +10 file1 | head -16 
+
+* List only 10th line in a file​
+->	tail +10 file1 | head -1
+
+* List only the recently modified file in the current directory​
+->	ls -lt
+
+* List only the smallest file in the current directory​
+->	ls -lSr | head -2
+
+
+*  A data file is updated regularly, each day with 10 new records. New records are appended at the end. ​
+
+    Write the command to print total number of records in the file.​
+
+    Write the command to list only the records entered 3 days before.  
+-> 	a. wc -l
+	b. ls -l | grep "$(date +"%b %e")"
+
+************************************************************************************************************************************************************************
+
+Slide 61
+
+*Lines containing A​
+->	 grep [*a*] flist
+
+
+*lines containing The at the beginning​
+->	grep 'the' flist
+
+
+*lines  ending with  .	
+->	grep '[.]'$ flist
+​
+
+*lines with a,b or c as the second letter​
+->	grep -ni [?abc*] flist
+
+*lines which contain def , deef or deeeef ​
+->	 grep 'def\|deef\|deeeef' flist
+
+
+*lines not having numbers at the beginning ​
+->	grep [^1-9] flist
+
+
+*empty lines​
+->	grep -c '^$' flist
+
+
+*list the password file details of user1 - user10​
+->	
+
+*list only directories​
+-> ls dir */
+
+*list out the C programs in the current directory which are using math library file (hint:  math library file - math.h)​
+
+
+**********************************************************************************************************************************************************************
+Slide 63
+
+Create a file which contains long listing of the files in root directory​
+->	ls -l
+
+*Sort the file based on the filename descending order (last field)​
+->	sort -dr flist
+
+
+*Sort the file based only on the inode count​
+->	sort -i flist
+
+
+*Sort the file based on the user name and group name in reverse order​
+->	ls -l | sort -k3 -k4 |more
+
+*Sort the file based on the file size and store the output in a file called sortedfile​
+->	 ls -lS | cat >sortedfile
+
+**********************************************************************************************************************************************************************
+
+SLide 66
+
+Convert all capital letters into small letters in file
+->	cat flist | tr a-z A-Z
+​
+
+*Remove all occurrences of numbers in file​
+->	cat flist | tr -d [1-9]
+
+
+*remove all occurrences of spaces in a file​
+->	cat flist | tr -d [:space:]
+
+*suppress multiple occurrence of spaces in long listing of filenames​
+->	ls -l | tr -s [:space:]
+
+*count the number of alphabets in the file​
+-> grep -o [[:alpha:]] flist | wc -l
+
+*count the occurrences of ovals in the given file​
+->grep -o [aeiou] flist | wc -l
+
+**********************************************************************************************************************************************************************
+
+Slide 94
+
+1. Insert an heading at the beginning of the file​
+->	vi file1
+	click I 
+	
+
+2 Remove the second line in the file and try undo command​
+->	esc (command mode)
+	2dd
+	-u
+
+3. Search for all occurrences of bc ​
+
+4. Remove the word number​
+
+5. Replace all occurrences of char c in line1 only with C​
+->	%s/c/C
+
+
+6 Replace all occurrences of space with \t
+->	:%s/ /\t 	​
+
+    7. copy line 1 to 3 and paste at the end of the file​
+->	3yy
+
+    8. delete last 3 lines​
+->	3dd
+
+    9. undo last 2 changes
+->	 uu
+
+   10. save your file as “bc_v2”​
+
+**********************************************************************************************************************************************************************
+
+Slide 116
+
+1. Run a sort command of a large file at the background​
+->	sleep 100&
+	ps -l
+
+	ls -l sort >flist1&
+
+2. Run a sort command of a large file at the background using nohup​
+->	nohup sleep 100&
+	ps -l
+	nohup ls -l | sort >flist&
+
+
+3. Write a command that sleeps for 5 seconds and then prints hello
+->	sleep 5s
+	echo "hello"
+
+**********************************************************************************************************************************************************************
+
+Slide 118
+
+1)Write a command which will print banner saying hello into a file about 3 minutes from now
+->	at now + 3 minute
+	echo "hello" >f1
+
+2)Write the command to write the processes that will be running after 10 days into a file ‘processfile’
+->	at now + 10 day
+	at -l >processfile
+
+3)Write the command to send birthday wishes to your friend, whose birthday is tomorrow
+->	echo "happy birthday" | at now +1 day
+​
+**********************************************************************************************************************************************************************
+Slide 120
+
+Try the commands done with at using crontab
+->	 crontab [to schedule meeting]
+	 * * * * * >file1[scheduled meet which will create file1 every minute]
+	 crontab -l	(to check previous scheduled meeting)
+	 at now +1 minute(schedule meeting)
+	 sleep 100&(scheduled meeting)
+	 at -l		(to see scheduled meet)
+	 at -r mno(2)	(remove )
+	
