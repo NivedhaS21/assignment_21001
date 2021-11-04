@@ -1,3 +1,8 @@
+
+Nivedha S
+id :21001
+
+************************************************************************************************************************************************************************
 Slide 41
 
 1. Create folder 'Test' in your home directory​
@@ -173,7 +178,7 @@ Slide 61
 
 
 **********************************************************************************************************************************************************************
-Slide 64
+Slide 63
 
 Create a file which contains long listing of the files in root directory​
 ->	ls -l
@@ -194,7 +199,7 @@ Create a file which contains long listing of the files in root directory​
 
 **********************************************************************************************************************************************************************
 
-SLide 67
+SLide 66
 
 Convert all capital letters into small letters in file
 ->	cat flist | tr a-z A-Z
@@ -205,9 +210,97 @@ Convert all capital letters into small letters in file
 
 
 *remove all occurrences of spaces in a file​
+->	cat flist | tr -d [:space:]
 
 *suppress multiple occurrence of spaces in long listing of filenames​
+->	ls -l | tr -s [:space:]
 
 *count the number of alphabets in the file​
+-> grep -o [[:alpha:]] flist | wc -l
 
 *count the occurrences of ovals in the given file​
+->grep -o [aeiou] flist | wc -l
+
+**********************************************************************************************************************************************************************
+
+Slide 94
+
+1. Insert an heading at the beginning of the file​
+->	vi file1
+	click I 
+	
+
+2 Remove the second line in the file and try undo command​
+->	esc (command mode)
+	2dd
+	-u
+
+3. Search for all occurrences of bc ​
+
+4. Remove the word number​
+
+5. Replace all occurrences of char c in line1 only with C​
+->	%s/c/C
+
+
+6 Replace all occurrences of space with \t
+->	:%s/ /\t 	​
+
+    7. copy line 1 to 3 and paste at the end of the file​
+->	3yy
+
+    8. delete last 3 lines​
+->	3dd
+
+    9. undo last 2 changes
+->	 uu
+
+   10. save your file as “bc_v2”​
+
+**********************************************************************************************************************************************************************
+
+Slide 116
+
+1. Run a sort command of a large file at the background​
+->	sleep 100&
+	ps -l
+
+	ls -l sort >flist1&
+
+2. Run a sort command of a large file at the background using nohup​
+->	nohup sleep 100&
+	ps -l
+	nohup ls -l | sort >flist&
+
+
+3. Write a command that sleeps for 5 seconds and then prints hello
+->	sleep 5s
+	echo "hello"
+
+**********************************************************************************************************************************************************************
+
+Slide 118
+
+1)Write a command which will print banner saying hello into a file about 3 minutes from now
+->	at now + 3 minute
+	echo "hello" >f1
+
+2)Write the command to write the processes that will be running after 10 days into a file ‘processfile’
+->	at now + 10 day
+	at -l >processfile
+
+3)Write the command to send birthday wishes to your friend, whose birthday is tomorrow
+->	echo "happy birthday" | at now +1 day
+​
+**********************************************************************************************************************************************************************
+Slide 120
+
+Try the commands done with at using crontab
+->	 crontab [to schedule meeting]
+	 * * * * * >file1[scheduled meet which will create file1 every minute]
+	 crontab -l	(to check previous scheduled meeting)
+	 at now +1 minute(schedule meeting)
+	 sleep 100&(scheduled meeting)
+	 at -l		(to see scheduled meet)
+	 at -r mno(2)	(remove )
+	
