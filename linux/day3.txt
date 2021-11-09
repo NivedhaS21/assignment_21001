@@ -1,0 +1,234 @@
+Nivedha S
+id:21001
+
+*********************************************************************** Day 3 ******************************************************************************************
+
+Slide 143
+
+1. Accept two numbers from the user do all arithmetic operations on them and write the output
+->echo enter n1
+   read n1
+   echo enter n2
+   read n2
+   sum=`expr $n1 + $n2`
+   echo "the sum= $sum"
+   sub=`expr $n1 - $n2`
+   echo " the subs= $sub"
+   mul= `expr $n1 * $n2`
+   echo " the mul= $mul"
+   div= `expr $n1/ $n2`
+   echo "the div= $d
+
+2. Accept two strings and display them as banner
+->echo "enter string1"
+   read str1
+   echo "enter string2"
+   read str2
+   expr "banner $str1 $str2"
+
+3.Accept a username and send him a message if the user has logged in 
+->
+echo "username"
+   read uname
+   if who -u | grep -q "^$uname"
+   then
+      write $uname
+   else
+      echo "user not logged in"
+
+OR
+echo "username"
+read uname
+q= `write $uname`
+
+***********************************************************************************************************************************************************************
+
+Slide 151
+
+1. Accept a 12 arguments form the user and display the program name, the 2,4,6,8,10 and 12th argument values
+->
+	vi disp.sh
+	echo $2
+	echo $4
+	echo $6
+	echo $8
+	echo $10
+	echo $12
+	:wq
+
+	bash disp.sh 1 2 3 4 5 6 7 8 9 10 11 12
+
+2. Accept as many arguments as the user wants and display them all in capitals
+->
+	echo "enter args"
+	read s
+	until [ $s = "EOF" ]
+	do
+	echo $a | tr '[:lower:]' '[:upper:]'
+	read s
+	done
+
+3. Write a script which sets some default values to two command line arguments if they are not given by the user
+->
+	echo $1
+	echo $2
+	echo $3
+	set 10 100
+	echo $1
+	echo $2
+	echo $3
+
+****************************************************************************************************************************************************************************
+Slide 161
+
+1. Accept 3 numbers and display the greatest number 
+->	
+	echo "Enter 3 numbers"
+	read num1
+	read num2
+	read num3
+	if test $num1 -gt $num2 -a $num1 -gt $num3
+	then
+	        echo "$num1 is biggest"
+	elif test $num2 -gt $num1 -a $num2 -gt $num3
+	then
+	        echo "$num2 is biggest"
+	elif test $num3 -gt $num1 -a $num3 -gt $num2
+	then
+	        echo "$num3 is biggest"
+	else
+	        echo "either 2 numbers are equal or all 3 numbers are equal"
+	fi
+
+
+2. Accept a filename and check if the file exists or not, whether it is empty or not.
+->
+	echo "enter filename"
+	read file1
+	if test -s $file1
+	then
+	        echo "file exists and is not empty"
+	elif test -f $file1
+	then
+	        echo "file exists and is empty"
+	else
+	        echo "file does'nt exist"
+	fi
+
+
+3. Create a simple quiz with 2 quiz questions
+ (Write a shell script that asks the above questions to the user and prints the score at the end)
+->	vi quiz
+	score=0
+	echo "give the correct answer and get points"
+	echo "how many sides does square have?"
+	read a
+	if test $a -eq 4
+	then
+        	point=`expr $score + 1`
+	else
+	        point=`expr $score + 0`
+	fi
+
+	echo "how many sides does a pentagon have?"
+	read b
+	if test $b -eq 5
+	then
+	        point=`expr $point + 1`
+	else
+	        point=`expr $point + 0`
+	fi
+
+	echo "the total score is $point"
+
+************************************************************************************************************************************************************************
+
+Slide 169
+
+1.Accept a set of arguments from the user and find the largest of them.
+->
+	echo "enter total num of args required"
+	read N
+	i=1
+	max=0
+	echo "enter numbers"
+	while [ $i -le $N ]
+	do
+	 read num
+	if [ $num -gt $max ]
+	  then
+	        max=$num
+	   fi
+	   i=$((i+1))
+	done
+	echo "the largest num is $num"
+	:wq
+
+	bash large
+
+2. Accept numbers from the user till 0 is passed and add them.
+->
+	read a
+	sum=0
+	until [ $a -eq 0 ]
+	do
+	        sum=` expr $sum + $a `
+	        read a
+	done
+	echo $sum
+
+***********************************************************************************************************************************************************************
+
+Slide 176
+
+1. Accept a character from the user and display if it is a number or alphabet and others in case of any other character. Do this till the user enters empty value
+->	
+	read a
+	while [ $a != "EOF" ]
+	do
+	        case $a in
+	                [0-9]*) echo "number";;
+	                [a-z]*) echo "alphabet";;
+	                [A-Z]*) echo "alphabet";;
+	                *) echo "others";;
+	        esac
+	        read a
+	done
+
+2. Write a script that asks for the capital of India and repeats the question until the users enters correct.
+->	
+	echo "which is the capital of India?"
+	read a
+	echo $a
+	until [ $a = "Delhi" ]
+	do
+	        read a
+	done
+	echo "$a is correct"
+
+3. Write a script delete that will store the file somewhere before deleting.
+->
+	echo "enter file name"
+	read f1
+	echo "enter a filename with path to copy"
+	read f2
+	cp $f1 $f2
+	rm $f1
+	cat $f2
+
+************************************************************************************************************************************************************************
+
+Slide 186
+
+1.Write a function which will accept a filename and finds the number of line having at least one vowel in the file. 
+If none of lines contains vowel, it exits with error.
+->
+Filename is passed as argument
+filename=$1
+echo "Number of words with vowels"
+while read line; do
+echo $line
+less $1 | grep -E [aeiouAEIOU] | wc -w > print.txt
+done < print.txt
+ 
+
